@@ -43,45 +43,45 @@ public class CommonConfigs {
         ConfigBuilder builder = ConfigBuilder.create(SawmillMod.MOD_ID, ConfigType.COMMON_SYNCED);
 
         builder.push("general");
-        SORT_RECIPES = builder.comment("Sort recipes following cretive tab order. " +
-                        "Could cause issue in the case when, for whatever reason, creative other would differ from server to client." +
-                        "Additionally Neoforge has a bug where this stuff won't work on servers. Use Forge instead!")
+        SORT_RECIPES = builder.comment("Sort recipes following creative tab order. " +
+                        "Could cause issue in the case when, for whatever reason, creative order would differ from server to client. " +
+                        "Additionally, NeoForge has a bug where this stuff won't work on servers. Use Forge instead!")
                 .define("sort_recipes", true);
         GEN_MODE = builder.comment("""
-                        \nHow dynamic assets are generated. If cached the cache will regenerate once any mod or pack changes
-                        - NEVER: This mod will never attempt to generate the cache folder. The assets will be put in memory
-                        - CACHED: create a CACHE folder via .minecraft/dynamic-resource-pack-cache
-                        - CACHED_ZIPPED: create a ZIP folder via .minecraft/dynamic-resource-pack-cache
-                        - ALWAYS: Will always generate the assets & will be stored in memory. There will be no cache folder""")
+                        \nHow dynamic assets are generated. If cached, the cache will regenerate once any mod or pack changes.
+                        - NEVER: This mod will never attempt to generate the cache folder. The assets will be put in memory.
+                        - CACHED: Create a CACHE folder via .minecraft/dynamic-resource-pack-cache.
+                        - CACHED_ZIPPED: Create a ZIP folder via .minecraft/dynamic-resource-pack-cache.
+                        - ALWAYS: Will always generate the assets & will be stored in memory. There will be no cache folder.""")
                 .define("recipe_generation_mode", GenMode.CACHED);
 
-        ALLOW_NON_BLOCKS = builder.comment("Allow crafting non-block items")
+        ALLOW_NON_BLOCKS = builder.comment("Allow crafting non-block items.")
                 .define("allow_non_blocks", true);
-        ALLOW_NON_VARIANTS = builder.comment("Allows crafting non wood variant items (crafting table for example)")
+        ALLOW_NON_VARIANTS = builder.comment("Allows crafting non wood variant items (Crafting Table for example).")
                 .define("allow_non_variant", true);
-        MOD_BLACKLIST = builder.comment("List of Mod ids you want to completely exclude from sawmill recipes. " +
-                        "All recipes from these mods will be ignored. Use to remove mods with many recipes as sawmill can display at most 255 at once" +
-                        "For more fine control use the sawmill:blacklist item tag")
+        MOD_BLACKLIST = builder.comment("List of Mod ids you want to completely exclude from Sawmill recipes. " +
+                        "All recipes from these mods will be ignored. Use to remove mods with many recipes as Sawmill can display at most 255 at once." +
+                        "For finer control, use the sawmill:blacklist item tag.")
                 .define("mods_blacklist", List.of("framedblocks"));
-        PLANKS_ONLY_ONE = builder.comment("Makes so planks recipes can only craft items with 1 input plank. Disable to allow more recipes")
+        PLANKS_ONLY_ONE = builder.comment("Makes it so that planks recipes can only craft items with 1 input plank. Disable to allow more recipes.")
                 .define("limit_planks_input_to_one", true);
-        WIDE_GUI = builder.comment("Makes Sawmill GUI slightly wider")
+        WIDE_GUI = builder.comment("Makes Sawmill GUI slightly wider.")
                 .define("wider_gui", false);
         SEARCH_MODE = builder
-                .comment("Determines if GUI will have search bar or not. Automatic only enables the bar statically when you have enough mods that add wood recipes. Dynamic changes the gui dynamically depending on how many recipe its displaying")
+                .comment("Determines if GUI will have search bar or not. Automatic only enables the bar statically when you have enough mods that add wood recipes. Dynamic changes the gui dynamically depending on how many recipes it's displaying.")
                 .define("search_bar_mode", SearchMode.AUTOMATIC);
         SEARCH_BAR_THRESHOLD = builder.comment("At how many recipes the search bar should appear")
                 .define("search_bar_threshold", 32, 0, 200);
 
-        SPECIAL_COSTS = builder.comment("This is a map of wood object type to its cost in planks. Its used to add some discount to some special blocks." +
-                        "Change this if say you want all fences to cost 1 plank. Not all keys will work here bt you can try modded ones if you hae Every Compat")
+        SPECIAL_COSTS = builder.comment("This is a map of wood object types to their costs in planks. It's used to add discounts to some special blocks." +
+                        "Change this if you want all fences to cost 1 plank for example. Not all keys will work here, but you can try modded ones if you have Every Compat.")
                 .defineObject("special_recipe_costs", () -> new HashMap<>(Map.of("stairs", 1d,
                                 "boat", 4d)),
                         Codec.unboundedMap(Codec.STRING, Codec.DOUBLE));
-        MAX_DISCOUNT = builder.comment("Maximum discount that sawmill will given when converting recipes. Unit is percentage of input item")
+        MAX_DISCOUNT = builder.comment("Maximum discount that Sawmills will give when converting recipes. Unit is percentage of input item.")
                 .define("max_discount", 0.35, 0, 1);
 
-        RS_COMPAT = builder.comment("Enables and disables compat structures for Repurposed Structures mod")
+        RS_COMPAT = builder.comment("Enables and disables compat structures for Repurposed Structures mod.")
                 .define("repurposed_structures_compat", true);
         builder.pop();
 
